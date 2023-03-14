@@ -5,3 +5,17 @@
 """
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
+        result = []
+        path = []
+        def backtracking(n, k, startidx):
+            if len(path) == k:
+                result.append(path[:])
+                return
+            last_startidx = n - (k - len(path)) + 1
+
+            for x in range(startidx, last_startidx + 1):
+                path.append(x)
+                backtracking(n, k, x + 1)
+                path.pop()
+        backtracking(n, k, 1)
+        return result
