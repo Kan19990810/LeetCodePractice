@@ -1,6 +1,6 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        = len(nums)
+        n = len(nums)
 
         left = 0
         right = n - 1
