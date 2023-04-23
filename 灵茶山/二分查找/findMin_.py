@@ -11,3 +11,18 @@ class Solution:
                 right -= 1
         return nums[right]
 
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        left = 0
+        right = len(nums) - 2
+        while left <= right:
+            mid = (left + right) // 2
+            if nums[mid] > nums[right + 1]:
+                left = mid + 1
+            elif nums[mid] < nums[right + 1]:
+                right = mid - 1
+            else:
+                right -= 1
+            print(left, right)
+        return nums[right + 1]
+
