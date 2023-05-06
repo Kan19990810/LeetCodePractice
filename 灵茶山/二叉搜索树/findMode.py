@@ -6,8 +6,6 @@ class TreeNode:
 class Solution:
     def findMode(self, root: Optional[TreeNode]) -> List[int]:
         orderList = []
-        ans = root.val
-        ma = 0
         def orderroot(root):
             if not root:
                 return
@@ -21,5 +19,19 @@ class Solution:
 
         orderroot(root)
 
-        for idx, element in enumerate(orderList):
+        ans = []
+        ma = 0
+        num = Counter()
+
+        for _, element in enumerate(orderList):
+            num['element'] += 1
+            if num['element'] > ma:
+                ans = [element]
+                ma = num['element']
+            elif num['element'] == ma:
+                ans.append(element)
+
+        return ans
+
+
 
