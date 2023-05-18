@@ -31,9 +31,9 @@ class Solution:
                     continue
                 if lremove + rremove > len(str) - i:
                     break
-                if lremove > 0 and s[i] == '(':
+                if lremove > 0 and str[i] == '(':
                     dfs(str[:i] + str[i + 1:], i, lremove - 1, rremove)
-                if rremove > 0 and s[i] == ')':
+                if rremove > 0 and str[i] == ')':
                     dfs(str[:i] + str[i + 1:], i, lremove, rremove - 1)
 
         dfs(s, 0, lremove, rremove)
