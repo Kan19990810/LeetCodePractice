@@ -2,8 +2,8 @@ import glob
 import shutil
 
 if __name__ == '__main__':
-    shutil.move('/public/home/xiaok/xiaok/data/dev', '/public/home/xiaok/xiaok/data/sitw')
-    shutil.move('/public/home/xiaok/xiaok/data/evel', '/public/home/xiaok/xiaok/data/sitw')
-    shutil.move('/public/home/xiaok/xiaok/data/README.txt', '/public/home/xiaok/xiaok/data/sitw')
+    shutil.copytree('/public/home/xiaok/xiaok/data/voxceleb1', '/public/home/xiaok/xiaok/data/voxceleb1_2')
+    shutil.copytree('/public/home/xiaok/xiaok/data/voxceleb2', '/public/home/xiaok/xiaok/data/voxceleb1_2')
+
 
 
