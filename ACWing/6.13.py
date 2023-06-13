@@ -4,7 +4,7 @@ n = int(stdin.readline().split()[0])
 cattle = str(stdin.readline().split()[0])
 
 odd = [0] * (n // 2)
-even = [0] * (n //2)
+even = [0] * (n // 2)
 ans = 0
 for i in range(n // 2):
     if cattle[2 * i] == 'G':
