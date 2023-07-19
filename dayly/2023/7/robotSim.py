@@ -1,34 +1,17 @@
 class Solution:
     def robotSim(self, commands: List[int], obstacles: List[List[int]]) -> int:
-        direct = 0
-        ans = 0
-        start = [0, 0]
-        end = [0, 0]
-
-        obstacles_x = obstacles.sort(key = lambda i: i[0])
-        obstacles_y = obstacles.sort(key = lambda i: i[1])
-
-        for i in commands:
-            if commands == -1:
-                direct += 1
-                direct %= 4
-            elif commands == -2:
-                direct -= 1
-                direct %= 4
+        dirs = [[-1, 0], [0, 1], [1, 0], [0, -1]]
+        px, py, d = 0, 0, 1
+        mp = set([tuple(i) for i in obstacles])
+        res = 0
+        for c in commands:
+            if c < 0:
+                d += 1 if c == -1 else -1
+                d %= 4
             else:
-                if direct == 0:
-                    end[0] = start[0]
-                    end[1] = start[1] + commands
-
-
-
-                elif direct == 1:
-                    end[0] = start[0] + commands
-                    end[1] = start[1]
-                elif direct == 2:
-                    end[0] = start[0]
-                    end[1] = start[1] - commands
-                else:
-                    end[0] = start[0] -commands
-                    end[1] = start[1]
-            
+                for i in range(c):
+                    if tuple([px + dirs[d][0], py + dirs[d][1]]) in mp:
+                        break
+                    px, py = px + dirs[d][0], py + dirs[d][1]
+                    res = max(res, px * px + py * py)
+        return res
