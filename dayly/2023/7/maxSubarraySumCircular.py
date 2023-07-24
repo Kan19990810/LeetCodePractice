@@ -1,22 +1,38 @@
 class Solution:
     def maxSubarraySumCircular(self, nums: List[int]) -> int:
         n = len(nums)
-        leftMax = [0] * n
-        # 对坐标为 0 处的元素单独处理，避免考虑子数组为空的情况
-        leftMax[0], leftSum = nums[0], nums[0] 
+
+        q = deque()
         pre, res = nums[0], nums[0]
-        for i in range(1, n):
-            # pre, res 为连续数组时的情况
-            pre = max(pre + nums[i], nums[i])
-            res = max(res, pre)
-            leftSum += nums[i]
-            leftMax[i] = max(leftMax[i - 1], leftSum)
-        # 从右到左枚举后缀，固定后缀，选择最大前缀
-        rightSum = 0
-        for i in range(n - 1, 0, -1):
-            rightSum += nums[i]
-            res = max(res, rightSum + leftMax[i - 1])
+        q.append((0, pre))
+        for i in range(1, 2 * n):
+            # 长度小于 N
+            while len(q) > 0 and q[0][0] < i - n:
+                q.popleft()
+            pre += nums[i % n]
+            # 维护最小前缀和在队列
+            res = max(res, pre - q[0][1])
+            while len(q) > 0 and q[-1][1] >= pre:
+                q.pop()
+            q.append((i, pre))
         return res
+
+        # leftMax = [0] * n
+        # # 对坐标为 0 处的元素单独处理，避免考虑子数组为空的情况
+        # leftMax[0], leftSum = nums[0], nums[0] 
+        # pre, res = nums[0], nums[0]
+        # for i in range(1, n):
+        #     # pre, res 为连续数组时的情况
+        #     pre = max(pre + nums[i], nums[i])
+        #     res = max(res, pre)
+        #     leftSum += nums[i]
+        #     leftMax[i] = max(leftMax[i - 1], leftSum)
+        # # 从右到左枚举后缀，固定后缀，选择最大前缀
+        # rightSum = 0
+        # for i in range(n - 1, 0, -1):
+        #     rightSum += nums[i]
+        #     res = max(res, rightSum + leftMax[i - 1])
+        # return res
 
 
         
