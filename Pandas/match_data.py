@@ -1,13 +1,13 @@
 import pandas as pd
 
 if __name__ == '__main__':
-    file1_path = r'C:\Users\Kan\Desktop\unify.csv'
-    file2_path = r'C:\Users\Kan\Desktop\application.csv'
+    file1_path = r'C:\Users\Kan\Desktop\unify_1.csv'
+    file2_path = r'C:\Users\Kan\Desktop\RD.csv'
     
     file1 = pd.read_csv(file1_path)
     file2 = pd.read_csv(file2_path)
-    topic1 = ['SgnYear', 'AreaName', 'InternetUsers', 'BroadBandSub']
-    topic2 = ['SgnYear', 'AreaName', 'NewProDevelopmentProject']
+    # topic1 = ['SgnYear', 'AreaName', 'InternetUsers', 'BroadBandSub']
+    topic2 = ['SgnYear', 'AreaName', 'RDProjectExpenditure']
     df1 = file1
     df2 = file2[topic2].iloc[2:]
     # # df1['SgnYear'] = df1['SgnYear'].astype(object)
@@ -40,7 +40,7 @@ if __name__ == '__main__':
     # df4['AreaName'] = df4['AreaName'].astype(pd.StringDtype())
     # new_file = pd.merge(new_file, df4, on = ['SgnYear','AreaName'],  how = 'left')
 
-    new_file.to_csv('unify_1.csv',encoding='utf-8-sig')
+    new_file.to_csv('unify_2.csv',encoding='utf-8-sig')
     # print(df1.head())
     # print(df2.head())
     print(new_file.head())
