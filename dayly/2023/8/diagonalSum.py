@@ -7,4 +7,4 @@ class Solution:
             if i != n - 1 - i:
                 ans += mat[i][n - 1 - i]
 
-        return ans        
+        return ans
